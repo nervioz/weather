@@ -1,0 +1,253 @@
+@import 'fonts';
+
+$border-color: darkgrey;
+$city-box-height: darkgrey;
+
+@mixin border {
+  border: $border-color solid 1px;
+}
+
+.city-box {
+  display: flex;
+  align-items: flex-start;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+
+.app {
+  width: 100%;
+  min-width: 230px;
+  max-width: 630px;
+  height: 100%;
+  font-size: 14px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.add-button {
+  @include border;
+  cursor: pointer;
+  font-size: 17px;
+  padding: 10px 24px;
+  text-align: center;
+  margin-left: 5px;
+  &.disable {
+    cursor: auto;
+    color: darkgrey;
+  }
+}
+
+.search-city {
+  @include border;
+  height: 37px;
+  width: 100%;
+  padding: 0 8px;
+  position: relative;
+}
+
+.search {
+  border: 0;
+  padding: 0;
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+  &:focus{
+    outline: none;
+  }
+}
+
+.search-result {
+  z-index: 1;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  min-width: 100%;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0.1rem rgba(0,0,0,0.3), 0 0.2rem 0.2rem rgba(0,0,0,0.3);
+  list-style-type: none;
+  > li {
+    margin-top: -1px;
+    max-height: 100%;
+    transition: max-height 0.5s;
+    overflow: hidden;
+    padding: 7px;
+    cursor: pointer;
+    &:hover, &.marked {
+      background-color: cornsilk;
+    }
+    & .area {
+      color: $border-color;
+    }
+  }
+}
+
+.city-filter {
+  max-width: 200px;
+
+  .range-bubble {
+    position: relative;
+  }
+}
+
+.city-pane {
+  @include border;
+  padding: 7px;
+  margin-right: 25px;
+  margin-top: 10px;
+  width: 160px;
+  & .city-name {
+    display: flex;
+    justify-content: space-between;
+    height: 16px;
+    & .name {
+      font-weight: bold;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    & .icon-close {
+      cursor: pointer;
+      font-size: 16px;
+      color: gray;
+    }
+  }
+  & .temperature {
+    display: flex;
+    align-items: center;
+    font-size: 46px;
+    margin: 8px 0;
+    > span {
+      font-size: 24px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
+
+.flipInX {
+  backface-visibility: visible !important;
+  animation-name: flipInX;
+}
+
+.city-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 8.25px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3.5px;
+  cursor: pointer;
+  background: #9b9b9b;
+  border-radius: 0;
+  border: 0;
+}
+input[type=range]::-webkit-slider-thumb {
+  border: 0;
+  height: 20px;
+  width: 10px;
+  border-radius: 50px;
+  background: #000000;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8.25px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #9e9e9e;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 3.5px;
+  cursor: pointer;
+  background: #9b9b9b;
+  border-radius: 0;
+  border: 0;
+}
+input[type=range]::-moz-range-thumb {
+  border: 0;
+  height: 20px;
+  width: 10px;
+  border-radius: 50px;
+  background: #000000;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 3.5px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #989898;
+  border: 0;
+}
+input[type=range]::-ms-fill-upper {
+  background: #9b9b9b;
+  border: 0;
+}
+input[type=range]::-ms-thumb {
+  border: 0;
+  height: 20px;
+  width: 10px;
+  border-radius: 50px;
+  background: #000000;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #9b9b9b;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #9e9e9e;
+}
